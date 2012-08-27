@@ -5,7 +5,7 @@
 !define PRODUCT_VERSION "3.0.3"
 !define PRODUCT_PUBLISHER "Frank T. Bergmann"
 !define PRODUCT_WEB_SITE "http://fbergmann.github.com/launch4j/"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\ld.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\launch4j.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -55,8 +55,8 @@ Section "MainSection" SEC01
   File "C:\Program Files (x86)\Launch4j\bin\COPYING"
   File "C:\Program Files (x86)\Launch4j\bin\ld.exe"
   CreateDirectory "$SMPROGRAMS\Launch4j"
-  CreateShortCut "$SMPROGRAMS\Launch4j\Launch4j.lnk" "$INSTDIR\bin\ld.exe"
-  CreateShortCut "$DESKTOP\Launch4j.lnk" "$INSTDIR\bin\ld.exe"
+  CreateShortCut "$SMPROGRAMS\Launch4j\Launch4j.lnk" "$INSTDIR\launch4j.exe"
+  CreateShortCut "$DESKTOP\Launch4j.lnk" "$INSTDIR\launch4j.exe"
   File "C:\Program Files (x86)\Launch4j\bin\windres.exe"
   SetOutPath "$INSTDIR"
   File "C:\Program Files (x86)\Launch4j\build.xml"
@@ -285,10 +285,10 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\ld.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\launch4j.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\bin\ld.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\launch4j.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
